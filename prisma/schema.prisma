@@ -6,11 +6,39 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./smartplan.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  email String @unique
+  id            Int        @id @default(autoincrement())
+  first_name    String
+  last_mame     String
+  email         String     @unique
+  password      String?
+  refresh_token String?
+  created_at    DateTime   @default(now())
+  Receipts      Receipts[]
+}
+
+model Receipts {
+  id            Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  updateAt     DateTime?
+  userId       Int
+  productName  String
+  shop          String?
+  purchaseDate DateTime
+  price         Int
+  fileUrl      String
+  categoryId   Int
+  draft         Boolean  @default(true)
+  User          User     @relation(fields: [userId], references: [id])
+  Category      Category @relation(fields: [categoryId], references: [id])
+}
+
+model Category {
+  id       Int        @id @default(autoincrement())
+  name     String
+  Receipts Receipts[]
 }

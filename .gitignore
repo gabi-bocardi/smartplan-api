@@ -16,5 +16,5 @@ targets.log
 
 .o
 
-node_modules
-dist
+/node_modules
+/dist

@@ -8,16 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var AuthService_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const google_auth_library_1 = require("google-auth-library");
 const config_1 = require("@nestjs/config");
-let AuthService = AuthService_1 = class AuthService {
-    constructor(configService) {
+const prisma_service_1 = require("./prisma.service");
+let AuthService = class AuthService {
+    constructor(configService, prisma) {
         this.configService = configService;
-        this.logger = new common_1.Logger(AuthService_1.name);
+        this.prisma = prisma;
         this.oAuthClient = new google_auth_library_1.OAuth2Client(this.configService.get('OAUTH_CLIENT_ID'), this.configService.get('OAUTH_CLIENT_SECRET'), this.configService.get('OAUTH_REDIRECT_URL'));
     }
     getAuthUrl() {
@@ -40,12 +40,17 @@ let AuthService = AuthService_1 = class AuthService {
         const { data } = await this.oAuthClient.request({
             url: 'https://openidconnect.googleapis.com/v1/userinfo'
         });
+        this.prisma.user.create({
+            data: {
+                email: data.email
+            }
+        });
         return data.email;
     }
 };
-AuthService = AuthService_1 = __decorate([
+AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [config_1.ConfigService])
+    __metadata("design:paramtypes", [config_1.ConfigService, prisma_service_1.PrismaService])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

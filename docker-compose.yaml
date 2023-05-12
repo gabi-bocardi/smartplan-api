@@ -15,7 +15,7 @@ services:
   postgres:
     image: postgres:latest
     ports:
-      - "1433:1433"
+      - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres

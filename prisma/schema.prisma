@@ -6,39 +6,39 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id            Int        @id @default(autoincrement())
-  first_name    String
-  last_mame     String
-  email         String     @unique
-  password      String?
-  refresh_token String?
-  created_at    DateTime   @default(now())
+  Id            Int        @id @default(autoincrement())
+  FirstName    String
+  LastName     String
+  Email         String     @unique
+  Password      String
+  RefreshToken String?
+  CreatedAt    DateTime   @default(now())
   Receipts      Receipts[]
 }
 
 model Receipts {
-  id            Int      @id @default(autoincrement())
-  createdAt    DateTime @default(now())
-  updateAt     DateTime?
-  userId       Int
-  productName  String
-  shop          String?
-  purchaseDate DateTime
-  price         Int
-  fileUrl      String
-  categoryId   Int
-  draft         Boolean  @default(true)
-  User          User     @relation(fields: [userId], references: [id])
-  Category      Category @relation(fields: [categoryId], references: [id])
+  Id            Int      @id @default(autoincrement())
+  CreatedAt    DateTime @default(now())
+  UpdateAt     DateTime?
+  UserId       Int
+  ProductName  String
+  Shop          String?
+  PurchaseDate DateTime
+  Price         Int
+  FileUrl      String
+  CategoryId   Int
+  Draft         Boolean  @default(true)
+  User          User     @relation(fields: [UserId], references: [Id])
+  Category      Category @relation(fields: [CategoryId], references: [Id])
 }
 
 model Category {
-  id       Int        @id @default(autoincrement())
-  name     String
+  Id       Int        @id @default(autoincrement())
+  Name     String
   Receipts Receipts[]
 }

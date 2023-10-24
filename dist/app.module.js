@@ -10,6 +10,7 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const prisma_service_1 = require("./services/prisma.service");
+const UserController_1 = require("./controllers/UserController");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -17,6 +18,9 @@ AppModule = __decorate([
         imports: [config_1.ConfigModule.forRoot()],
         providers: [
             prisma_service_1.PrismaService,
+        ],
+        controllers: [
+            UserController_1.UserController,
         ],
     })
 ], AppModule);

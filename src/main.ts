@@ -16,6 +16,7 @@ async function main() {
   
   app.useGlobalPipes(new ValidationPipe());
   
+  app.setGlobalPrefix('api');
   await app.listen(5000);
   console.log('Listening on', await app.getUrl());
 }

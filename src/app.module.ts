@@ -17,13 +17,4 @@ import { ConfigModule } from '@nestjs/config';
   ],
 })
 
-export class AppModule{
-  // configure(consumer: MiddlewareConsumer): any {
-  //   consumer
-  //   .apply()
-  //   .forRoutes({
-  //     path: 'api/*', //not working
-  //     method: RequestMethod.ALL
-  //   })
-  // }
-}
+export class AppModule{}

@@ -33,6 +33,5 @@ module.exports = {
         'import/no-extraneous-dependencies': 'warn',
         'operator-linebreak': 'warn',
         },
-
     root: true,
   };

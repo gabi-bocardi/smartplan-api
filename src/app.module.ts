@@ -1,10 +1,14 @@
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config'
+import { MiddlewareConsumer, Module, RequestMethod, ValidationPipe} from '@nestjs/common';
 import { PrismaService } from './services/prisma.service';
 import { UserController } from './controllers/UserController';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+  ],
   providers: [
     PrismaService,
   ],
@@ -18,7 +22,7 @@ export class AppModule{
   //   consumer
   //   .apply()
   //   .forRoutes({
-  //     path: 'api/*',
+  //     path: 'api/*', //not working
   //     method: RequestMethod.ALL
   //   })
   // }

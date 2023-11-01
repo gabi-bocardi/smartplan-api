@@ -1,8 +1,8 @@
+import { NewUserDto } from 'src/dto/user.dto';
 import { PrismaService } from './../services/prisma.service';
-import { Controller, Post } from "@nestjs/common";
-import { User } from "@prisma/client";
+import { Body, Controller, Post } from "@nestjs/common";
 
-type newUser = Omit<User, 'CreateAt' | 'AuthToken'> & { Password: string, ConfirmPassword: string}
+
 @Controller("user")
 export class UserController {
     constructor(
@@ -10,7 +10,7 @@ export class UserController {
     ) {}
 
     @Post()
-    async create(newUser: newUser): Promise<string> {
+    async create(@Body() newUser: NewUserDto): Promise<string> {
         console.log(newUser);
         return "This action adds a new user";
     }

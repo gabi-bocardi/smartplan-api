@@ -10,10 +10,6 @@ async function main() {
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
 
-  firebase.initializeApp({
-    credential: firebase.credential.cert(JSON.parse(process.env.FIREBASE_AUTH_CREDENTIALS)),
-  })
-
   app.useGlobalPipes(new ValidationPipe());
 
   app.setGlobalPrefix('api');

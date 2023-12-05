@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { PrismaService } from './services/prisma.service';
-import * as firebase from 'firebase-admin';
 import { ValidationPipe } from '@nestjs/common';
 
 async function main() {

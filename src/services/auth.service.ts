@@ -13,5 +13,4 @@ export class AuthService {
 
         this.auth = this.firebaseApp.auth()
     }
-
 }

@@ -4,4 +4,4 @@ make start:
 
 #every time you change schema.prisma
 make prisma: 
-	npm prisma migrate dev 
+	npm prisma migrate dev

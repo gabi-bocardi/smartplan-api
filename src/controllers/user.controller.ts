@@ -1,6 +1,6 @@
 import { NewUserDto } from 'src/dto/user.dto';
 import { PrismaService } from '../services/prisma.service';
-import { Body, Controller, Post } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
 import { User } from '@prisma/client';
 
 
@@ -24,7 +24,7 @@ export class UserController {
             return user;
         }
         catch (error) {
-            console.log(error)
+            throw new BadRequestException(error)
         }
 
     }

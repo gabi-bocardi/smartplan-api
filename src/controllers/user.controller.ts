@@ -1,4 +1,4 @@
-import { NewUserDto } from 'src/dto/user.dto';
+import { NewUserDto } from '../dto/user.dto';
 import { PrismaService } from '../services/prisma.service';
 import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
 import { User } from '@prisma/client';
